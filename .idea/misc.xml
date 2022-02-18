@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_normal.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_selected.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_selector.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/shape_login_btn.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/shape_login_form.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/shape_register_btn.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/ic_launcher_background.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/icon1_selector.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/icon2_selector.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/icon3_selector.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/icon4_selector.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/icon5_selector.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/shape1.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/shape_search_box.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_advice.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_banner_webview.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_guide.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_login.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_main.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_new_search.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_order.xml" value="0.20104166666666667" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_register.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_service.xml" value="0.33" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_splash.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_update_psw.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_user_info.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_first_page.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_jingji.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_jingri.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_keji.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_news.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_services.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_smart_party.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_user.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_wenhua.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_zhengce.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_zhuanti.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/grid_item.xml" value="0.27943840579710144" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/main_tab_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/news_item.xml" value="0.5" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/order_item.xml" value="0.5" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

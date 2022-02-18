@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/guide_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/guide_rg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="130dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/guide_rb1"
+            style="@style/GuidePageRadioButtonStyle"
+            android:checked="true"
+            android:drawableTop="@drawable/guide_rb_selector" />
+
+        <RadioButton
+            android:id="@+id/guide_rb2"
+            style="@style/GuidePageRadioButtonStyle"
+            android:drawableTop="@drawable/guide_rb_selector" />
+
+        <RadioButton
+            android:id="@+id/guide_rb3"
+            style="@style/GuidePageRadioButtonStyle"
+            android:drawableTop="@drawable/guide_rb_selector" />
+
+        <RadioButton
+            android:id="@+id/guide_rb4"
+            style="@style/GuidePageRadioButtonStyle"
+            android:drawableTop="@drawable/guide_rb_selector" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/edit_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/guide_btn"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/shape1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="5dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP："
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_ip"
+                android:layout_width="match_parent"
+                android:layout_height="18sp"
+                android:lines="1"
+                android:background="@null"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="5dp"
+            android:background="#e8e7e7" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Port："
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_port"
+                android:layout_width="match_parent"
+                android:layout_height="18sp"
+                android:lines="1"
+                android:background="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/guide_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/guide_rg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:text="@string/startApp"
+        android:textColor="@color/teal_700"
+        android:textSize="17sp"
+        android:visibility="gone" />
+
+</RelativeLayout>
