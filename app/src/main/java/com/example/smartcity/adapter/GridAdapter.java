@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcity.MainActivity;
 import com.example.smartcity.R;
+import com.example.smartcity.bean.MessageEvent;
 import com.example.smartcity.fragment.ServicesFragment;
 import com.example.smartcity.serv_activity.ActActivity;
 import com.example.smartcity.serv_activity.BusActivity;
@@ -29,6 +30,8 @@ import com.example.smartcity.serv_activity.ParkActivity;
 import com.example.smartcity.serv_activity.TakeoutActivity;
 import com.example.smartcity.serv_activity.TraficActivity;
 import com.j256.ormlite.stmt.query.In;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class GridAdapter extends RecyclerView.Adapter {
     private static final String TAG = "gridAdapter";
@@ -77,10 +80,8 @@ public class GridAdapter extends RecyclerView.Adapter {
                     mContext.startActivity(new Intent(mContext, MovieActivity.class));
                 }else if (position == 9) {
 //                    ((MainActivity)mContext).gotoFragment();
-                    mContext.startActivity(new Intent(mContext, HospitalActivity.class));
-//                    ((MainActivity)mContext).getSupportFragmentManager()
-//                            .beginTransaction()
-//                            .replace();
+//                    mContext.startActivity(new Intent(mContext, HospitalActivity.class));
+                    EventBus.getDefault().post(new MessageEvent(1));
                 }
             }
         });

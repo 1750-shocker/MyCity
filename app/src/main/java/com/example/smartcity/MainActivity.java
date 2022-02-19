@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.smartcity.activity.BannerWebView;
 import com.example.smartcity.adapter.MFragmentStateAdapter;
 import com.example.smartcity.bean.BannerBean;
+import com.example.smartcity.bean.MessageEvent;
 import com.example.smartcity.fragment.FirstPageFragment;
 import com.example.smartcity.fragment.NewsFragment;
 import com.example.smartcity.fragment.ServicesFragment;
@@ -30,8 +31,13 @@ import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
+
 /*
     主页面使用ViewPager2+TabLayout组合控件实现，该实现方面设置联动和tab项
  */
@@ -47,7 +53,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       initView();
+        initView();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
 
     }
 
@@ -74,5 +87,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }).attach();
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void changeFragment(MessageEvent event) {
+        mainVp2.setCurrentItem(event.getFragmentid(), false);
+
+    }
+
 
 }

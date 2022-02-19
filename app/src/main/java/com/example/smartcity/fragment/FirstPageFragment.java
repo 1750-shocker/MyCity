@@ -75,7 +75,7 @@ public class FirstPageFragment extends Fragment {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String search = edtSearch.getText().toString();
                     Intent intent = new Intent(mContext, NewsSearchActivity.class);
-                    intent.putExtra("search", search);
+                    intent.putExtra("title", search);
                     startActivity(intent);
                     return true;
                 }

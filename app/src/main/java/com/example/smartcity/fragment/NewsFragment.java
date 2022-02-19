@@ -21,6 +21,7 @@ import com.example.smartcity.bean.RowsDTO;
 import com.example.smartcity.database.MDBHelper;
 import com.example.smartcity.utils.GetRetrofit;
 import com.google.android.material.tabs.TabLayout;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.youth.banner.Banner;
 
 import java.sql.SQLException;
@@ -80,9 +81,13 @@ public class NewsFragment extends Fragment {
                 List<RowsDTO> rows = newsBean.getRows();
                 MDBHelper mdbHelper = MDBHelper.getInstance(mContext);
                 try {
+//                    mdbHelper.getNewsDao().delete(rows);
+//                    List<RowsDTO> title1 = mdbHelper.getNewsDao().deleteBuilder().where().isNotNull("title").query();
+//                    mdbHelper.getNewsDao().delete(title1);
+                    mdbHelper.getNewsDao().queryRaw("delete from RowsDTO");
+                    mdbHelper.getNewsDao().queryRaw("update sqlite_sequence SET seq = 0 where name ='RowsDTO'");
                     i = mdbHelper.getNewsDao().create(rows);
                     Log.i(TAG, "onResponse: "+ i);
-
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
