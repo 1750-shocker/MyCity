@@ -83,7 +83,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     etNicke.setText(user.getNickName().toString());
                     etPhone.setText(user.getPhonenumber().toString());
                     etEmail.setText(user.getEmail().toString());
-                    etIdetity.setText(user.getIdCard().toString());
+                    String IDCard = user.getIdCard().toString();
+                    etIdetity.setText(IDCard.substring(0,2)+"******"+ IDCard.substring(IDCard.length()-4, IDCard.length()));
                     sex = user.getSex();
                     rgSex.check(sex.equals("1") ? R.id.rb_woman : R.id.rb_man);
                 } else {

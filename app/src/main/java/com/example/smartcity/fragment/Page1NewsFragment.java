@@ -7,43 +7,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.example.smartcity.R;
 import com.example.smartcity.adapter.NewsTabAdapter;
-import com.example.smartcity.bean.MessageEvent;
-import com.example.smartcity.bean.NewsBean;
-import com.example.smartcity.bean.RowsDTO;
-import com.example.smartcity.database.MDBHelper;
-import com.example.smartcity.utils.GetRetrofit;
 import com.google.android.material.tabs.TabLayout;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.youth.banner.Banner;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class NewsFragment extends Fragment {
+public class Page1NewsFragment extends Fragment {
     private static final String TAG = "aaa";
     private LinearLayout news;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Context mContext;
 
-    public NewsFragment(Context mContext) {
+    public Page1NewsFragment(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -53,13 +36,13 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_news_firstpage, container, false);
         news = (LinearLayout) view.findViewById(R.id.news);
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         return view;
     }
-//    @Subscribe(threadMode = ThreadMode.MAIN)
+    //    @Subscribe(threadMode = ThreadMode.MAIN)
 //    public void changeFragment(MessageEvent event) {
 //        if (event.getFragmentid() == 2) {
 //           tabLayout.setBackgroundColor(getResources().getColor(R.color.hui));

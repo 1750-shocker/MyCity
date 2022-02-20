@@ -9,7 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,19 +23,33 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.smartcity.MainActivity;
 import com.example.smartcity.R;
 import com.example.smartcity.activity.BannerWebView;
 import com.example.smartcity.activity.NewsSearchActivity;
 import com.example.smartcity.adapter.GridAdapter;
+import com.example.smartcity.adapter.M1FragmentStateAdapter;
 import com.example.smartcity.bean.BannerBean;
+import com.example.smartcity.bean.MessageEvent;
+import com.example.smartcity.bean.NewsBean;
+import com.example.smartcity.bean.RowsDTO;
+import com.example.smartcity.database.MDBHelper;
+import com.example.smartcity.utils.GetRetrofit;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class FirstPageFragment extends Fragment {
@@ -43,6 +59,7 @@ public class FirstPageFragment extends Fragment {
     private List<BannerBean.RowsDTO> list = new ArrayList<>();
     private BannerImageAdapter<BannerBean.RowsDTO> bannerImageAdapter;
     private RecyclerView recyclerView;
+    private ViewPager2 viewpager2;
 
     public FirstPageFragment(Context mContext) {
         this.mContext = mContext;
@@ -52,9 +69,11 @@ public class FirstPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first_page, container, false);
+        viewpager2 = view.findViewById(R.id.vp_2);
         edtSearch = view.findViewById(R.id.edt_search);
         banner = view.findViewById(R.id.banner);
         recyclerView = view.findViewById(R.id.rv_grid);
+        recyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         GridLayoutManager m = new GridLayoutManager(mContext, 5);
         recyclerView.setLayoutManager(m);
         recyclerView.setAdapter(new GridAdapter(mContext));
@@ -66,6 +85,42 @@ public class FirstPageFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initBanner();
         initSearch();
+        initDB();
+        initNews();
+    }
+
+    private void initNews() {
+        viewpager2.setAdapter(new M1FragmentStateAdapter((MainActivity)mContext, mContext));
+        viewpager2.setUserInputEnabled(false);
+
+    }
+
+    private void initDB() {
+        GetRetrofit.get().getNewsBean().enqueue(new Callback<NewsBean>() {
+
+            private int i;
+
+            @Override
+            public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
+                NewsBean newsBean = response.body();
+                List<RowsDTO> rows = newsBean.getRows();
+                MDBHelper mdbHelper = MDBHelper.getInstance(mContext);
+                try {
+//                    mdbHelper.getNewsDao().delete(rows);
+//                    List<RowsDTO> title1 = mdbHelper.getNewsDao().deleteBuilder().where().isNotNull("title").query();
+//                    mdbHelper.getNewsDao().delete(title1);
+                    mdbHelper.getNewsDao().queryRaw("delete from RowsDTO");
+                    mdbHelper.getNewsDao().queryRaw("update sqlite_sequence SET seq = 0 where name ='RowsDTO'");
+                    i = mdbHelper.getNewsDao().create(rows);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<NewsBean> call, Throwable throwable) {
+
+            }
+        });
     }
 
     private void initSearch() {

@@ -18,7 +18,8 @@
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/icon5_selector.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/shape1.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable/shape_search_box.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_advice.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_act.xml" value="0.2046875" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_advice.xml" value="0.5" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_banner_webview.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_guide.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/activity_login.xml" value="0.2046875" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_jingri.xml" value="0.2046875" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_keji.xml" value="0.2046875" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_news.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_news_firstpage.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_services.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_smart_party.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/layout/fragment_user.xml" value="0.36614583333333334" />

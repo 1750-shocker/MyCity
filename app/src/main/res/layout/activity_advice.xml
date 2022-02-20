@@ -3,39 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.AdviseActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_advice"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
     <LinearLayout
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"
-        android:background="@drawable/shape_login_form">
+        android:layout_margin="20dp"
+        android:background="@drawable/shape_login_form"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="请输入您的意见："/>
+            android:text="请输入您的意见："
+            android:textSize="18sp" />
+
         <EditText
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:id="@+id/content"
-            android:hint=""/>
+            android:hint=""
+            android:maxLength="150"
+            android:gravity="top"
+            android:minLines="8"/>
     </LinearLayout>
-    <Button
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="提交"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/changedNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="17sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/150"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+    <Button
         android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:background="@drawable/shape_login_btn"
+        android:text="提交"
         android:textColor="#fff"
-        android:textSize="22sp"
-        android:background="@drawable/shape_login_btn"/>
+        android:textSize="22sp" />
 
 </LinearLayout>

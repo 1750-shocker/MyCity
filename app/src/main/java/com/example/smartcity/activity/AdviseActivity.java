@@ -1,10 +1,13 @@
 package com.example.smartcity.activity;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,6 +30,8 @@ public class AdviseActivity extends AppCompatActivity implements View.OnClickLis
     private Toolbar toolbarAdvice;
     private EditText content;
     private Button btnSend;
+    private TextView changedNum;
+    private int maxNum = 150;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,25 @@ public class AdviseActivity extends AppCompatActivity implements View.OnClickLis
         content = (EditText) findViewById(R.id.content);
         btnSend = (Button) findViewById(R.id.btn_send);
         btnSend.setOnClickListener(this);
+        changedNum = findViewById(R.id.changedNum);
+        content.addTextChangedListener(new TextWatcher() {
+            private CharSequence temp;
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                temp = charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int number = editable.length();
+                changedNum.setText(number+"");
+            }
+        });
     }
 
     @Override

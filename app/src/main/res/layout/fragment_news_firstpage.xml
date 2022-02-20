@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape1"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/hui"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#FAE104"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/blue"
+        app:tabTextAppearance="@style/tabLayoutTextSize"
+        app:tabTextColor="@color/teal_700"
+        app:tabRippleColor="#000987ED"/>
+
+
+    <!--页面显示区-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
+

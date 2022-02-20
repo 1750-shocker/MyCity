@@ -48,10 +48,16 @@
                 android:textSize="24sp"
                 android:layout_marginBottom="20dp"/>
 
-            <TextView
-                android:id="@+id/news_content"
+<!--            <TextView-->
+<!--                android:id="@+id/news_content"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+            <WebView
+                android:id="@+id/details_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none"/>
 
             <TextView
                 android:id="@+id/news_else"

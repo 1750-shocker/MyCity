@@ -90,9 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void changeFragment(MessageEvent event) {
-        mainVp2.setCurrentItem(event.getFragmentid(), false);
-
+        if (event.getFragmentid() == 1) {
+            mainVp2.setCurrentItem(1, false);
+        }
     }
-
-
 }
