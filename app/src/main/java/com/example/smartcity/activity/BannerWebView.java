@@ -60,17 +60,17 @@ public class BannerWebView extends AppCompatActivity {
                         mWebView.loadDataWithBaseURL("http://124.93.196.45:10001", setWebVIewImage(data.getContent()), "text/html" , "utf-8", null);
                         newsElse.setText(data.getPublishDate());
                     } else {
-                        Toast.makeText(BannerWebView.this, newB.getCode() + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BannerWebView.this, "网络请求失败" + newB.getCode(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(BannerWebView.this, "responseBody为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BannerWebView.this, "网络请求失败" + newB.getCode(), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<NewBean> call, Throwable throwable) {
-
+                    Toast.makeText(BannerWebView.this, "网络请求失败" + newB.getCode(), Toast.LENGTH_SHORT).show();
             }
         });
     }
