@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:padding="4dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:padding="4dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:background="@drawable/shape_login_form"
-        android:orientation="vertical"
-        android:layout_marginRight="20dp">
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/shape1"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单编号："/>
+                android:text="订单编号：" />
+
             <TextView
+                android:id="@+id/order_No"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="100000000"
-                android:id="@+id/tv_ordernum"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2021-03-28 23:45:34"
-                android:id="@+id/order_date"/>
+                android:text="100000000" />
+
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单类型："
                 android:layout_marginTop="10dp"
-                android:id="@+id/order_type0"/>
+                android:text="订单类型：" />
+
             <TextView
+                android:id="@+id/order_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="交通出行"
                 android:layout_marginTop="10dp"
-                android:id="@+id/order_type"/>
+                android:text="交通出行" />
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="2021-03-28 23:45:34" />
         </LinearLayout>
     </LinearLayout>
 

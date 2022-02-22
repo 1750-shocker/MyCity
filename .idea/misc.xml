@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/drawable-v24/shape_login_form.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/drawable/shape1.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_banner_webview.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_order.xml" value="0.2" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_jingri.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_keji.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_smart_party.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_wenhua.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_zhengce.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_zhuanti.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/order_item.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_normal.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_selected.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_selector.xml" value="0.38229166666666664" />

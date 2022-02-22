@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartcity.R;
@@ -22,8 +26,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OrderActivity extends AppCompatActivity {
+    private static final String TAG = "ORDER-ACTIVITY";
     private Toolbar toolbar;
     private ListView orderListView;
+    private List<OrderBean.RowsDTO> rows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +45,8 @@ public class OrderActivity extends AppCompatActivity {
                 finish();
             }
         });
-        orderListView.setAdapter(new OrderAdapter());
         initBean();
+
     }
 
     private void initBean() {
@@ -50,16 +56,19 @@ public class OrderActivity extends AppCompatActivity {
                 OrderBean body = response.body();
                 int code = body.getCode();
                 int total = body.getTotal();
+                rows = body.getRows();
+                Log.i(TAG, "onResponse: 请求成功，code = " + code);
                 if (total == 0 && code == 200) {
                     Toast.makeText(OrderActivity.this, "您尚无订单", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if(code!=200){
                     Toast.makeText(OrderActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
                 }
+                orderListView.setAdapter(new OrderAdapter());
             }
 
             @Override
             public void onFailure(Call<OrderBean> call, Throwable throwable) {
-                Toast.makeText(OrderActivity.this, "网络请求失败", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "onFailure: 请求失败");
             }
         });
     }
@@ -68,22 +77,46 @@ public class OrderActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 0;
+            return rows.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return rows.get(i);
         }
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return i;
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            return null;
+        public View getView(int i, View convertView, ViewGroup viewGroup) {
+            ViewHolder viewHolder;
+            if (convertView == null) {
+                viewHolder = new ViewHolder();
+                convertView = LayoutInflater.from(OrderActivity.this).inflate(R.layout.order_item, null);
+                viewHolder.orderNo = (TextView) convertView.findViewById(R.id.order_No);
+                viewHolder.orderDate = (TextView) convertView.findViewById(R.id.order_date);
+                viewHolder.orderType = (TextView) convertView.findViewById(R.id.order_type);
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            viewHolder.orderNo.setText(rows.get(i).getOrderNo());
+            if (rows.get(i).getPayTime() == null) {
+                viewHolder.orderDate.setText("待支付");
+            } else {
+                viewHolder.orderDate.setText(rows.get(i).getPayTime());
+            }
+            viewHolder.orderType.setText(rows.get(i).getOrderTypeName());
+            return convertView;
+        }
+
+        public final class ViewHolder {
+            TextView orderNo;
+            TextView orderDate;
+            TextView orderType;
         }
     }
 }
