@@ -42,4 +42,10 @@
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/expand_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:childDivider="#00FFFFFF" />
 </LinearLayout>

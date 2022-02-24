@@ -5,14 +5,35 @@
       <map>
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/drawable-v24/shape_login_form.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/drawable/shape1.xml" value="0.20833333333333334" />
-        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_banner_webview.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_act.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_banner_webview.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_bus.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_fee.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_hospital.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_house.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_job.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_metro.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_movie.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_new_search.xml" value="0.1408514492753623" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_order.xml" value="0.2" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_park.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_takeout.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/activity_trafic.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_comment_dialog.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_first_page.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_jingji.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_jingji2.xml" value="0.1408514492753623" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_jingri.xml" value="0.1" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_keji.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_news_firstpage.xml" value="0.1408514492753623" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_services.xml" value="0.1" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_smart_party.xml" value="0.1" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_wenhua.xml" value="0.1" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_zhengce.xml" value="0.1" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/fragment_zhuanti.xml" value="0.1" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/grid_item.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/item_child.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/item_group.xml" value="0.1" />
         <entry key="..\:/Users/Freddy/AndroidStudioProjects/MyCity/app/src/main/res/layout/order_item.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_normal.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/k'k/AndroidStudioProjects/SmartCity/app/src/main/res/drawable-v24/guide_rb_selected.xml" value="0.38229166666666664" />
@@ -61,7 +82,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

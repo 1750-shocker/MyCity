@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.smartcity.bean.RowsDTO;
+import com.example.smartcity.bean.ServiceTable;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -16,6 +17,7 @@ public class MDBHelper extends OrmLiteSqliteOpenHelper {
     private final static String DB_NAME = "smart_city.db";
     private final static int DB_VERSION = 1;
     private Dao<RowsDTO, Integer> newsDao = null;
+    private Dao<ServiceTable, Integer> servDao = null;
 
     public MDBHelper(Context context, String databaseName, SQLiteDatabase.CursorFactory factory, int databaseVersion) {
         super(context, databaseName, factory, databaseVersion);
@@ -25,6 +27,7 @@ public class MDBHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, RowsDTO.class);
+            TableUtils.createTable(connectionSource, ServiceTable.class);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -53,6 +56,19 @@ public class MDBHelper extends OrmLiteSqliteOpenHelper {
             newsDao = dao;
         }
         return newsDao;
+    }
+
+    public Dao<ServiceTable, Integer> getServDao() {
+        if (servDao == null) {
+            Dao<ServiceTable, Integer> dao = null;
+            try {
+                dao = getDao(ServiceTable.class);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            servDao = dao;
+        }
+        return servDao;
     }
 
 }

@@ -54,12 +54,12 @@ public class Page1NewsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         String[] title = {"今日\n要闻", "专题\n聚焦", "政策\n解读", "经济\n发展", "文化\n旅游", "科技\n创新"};//tabItem数组
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(JingriFragment.newInstance());
-        fragmentList.add(ZhuantiFragment.newInstance());
-        fragmentList.add(ZhengceFragment.newInstance());
-        fragmentList.add(JingjiFragment.newInstance());
-        fragmentList.add(WenhuaFragment.newInstance());
-        fragmentList.add(KejiFragment.newInstance());//ViewPager的adapter是需要一个fragment实例的集合来返回
+        fragmentList.add(Jingri2Fragment.newInstance());
+        fragmentList.add(Zhuanti2Fragment.newInstance());
+        fragmentList.add(Zhengce2Fragment.newInstance());
+        fragmentList.add(Jingji2Fragment.newInstance());
+        fragmentList.add(Wenhua2Fragment.newInstance());
+        fragmentList.add(Keji2Fragment.newInstance());//ViewPager的adapter是需要一个fragment实例的集合来返回
         NewsTabAdapter newsTabAdapter = new NewsTabAdapter(getChildFragmentManager(), fragmentList, title);
         viewPager.setAdapter(newsTabAdapter);
         tabLayout.setupWithViewPager(viewPager);//关键代码，实现TabLayout和ViewPager一键联动，但是生成item项是在adapter中实现的

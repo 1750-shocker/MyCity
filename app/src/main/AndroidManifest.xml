@@ -73,6 +73,7 @@
         <activity android:name=".activity.NewsSearchActivity" />
         <activity android:name=".activity.UpdatePswActivity" />
         <activity android:name=".activity.AdviseActivity" />
+        <activity android:name=".activity.ServiceSearchActivity" />
     </application>
 
 </manifest>

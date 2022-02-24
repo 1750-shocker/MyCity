@@ -21,6 +21,8 @@ import com.example.smartcity.adapter.RecyclerLinearAdapter;
 import com.example.smartcity.bean.NewBean;
 import com.example.smartcity.bean.RowsDTO;
 import com.example.smartcity.database.MDBHelper;
+import com.example.smartcity.fragment.CommentDialogFragment;
+import com.example.smartcity.utils.DialogFragmentDataCallBack;
 import com.example.smartcity.utils.GetRetrofit;
 
 import java.sql.SQLException;
@@ -32,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BannerWebView extends AppCompatActivity {
+public class BannerWebView extends AppCompatActivity implements DialogFragmentDataCallBack {
     private Toolbar toolbar;
     private TextView newsTitle;
     private TextView newsContent;
@@ -42,11 +44,20 @@ public class BannerWebView extends AppCompatActivity {
     private RecyclerView comments;
     private RecyclerView recommends;
     private int id;
+    private TextView tvCommentFakeButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner_webview);
+        tvCommentFakeButton = (TextView) findViewById(R.id.tv_comment_fake_button);
+        tvCommentFakeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommentDialogFragment dialogFragment = new CommentDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(),"Comment");
+            }
+        });
         Bundle extras = getIntent().getExtras();
         id = (Integer) extras.get("id");
         comments = (RecyclerView) findViewById(R.id.comments);
@@ -60,6 +71,7 @@ public class BannerWebView extends AppCompatActivity {
         recommends.setAdapter(new RecyclerLinearAdapter(BannerWebView.this, rows));
         //TODO:comments的数据请求&adapter&itemLayout没写
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("详情");
         toolbar.setNavigationIcon(R.drawable.top_bar_left_back1);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,5 +174,15 @@ public class BannerWebView extends AppCompatActivity {
         //设置webview
 //        mWebView.setWebChromeClient(new MyWebChromeClient());
 //        mWebView.setWebViewClient(new MyWebViewClient());
+    }
+
+    @Override
+    public String getCommentText() {
+        return tvCommentFakeButton.getText().toString();
+    }
+
+    @Override
+    public void setCommentText(String commentText) {
+        tvCommentFakeButton.setText(commentText);
     }
 }
