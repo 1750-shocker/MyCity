@@ -11,7 +11,7 @@ public class SPUtil {
                 context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key,value);
-        editor.commit();
+        editor.apply();
     }
 
     public static void putBoolean(Context context, String key, boolean value) {
@@ -19,7 +19,7 @@ public class SPUtil {
                 context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean(key,value);
-        editor.commit();
+        editor.apply();
     }
 
 

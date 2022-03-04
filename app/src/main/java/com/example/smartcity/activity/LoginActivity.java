@@ -1,7 +1,6 @@
 package com.example.smartcity.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,19 +16,15 @@ import com.example.smartcity.MainActivity;
 import com.example.smartcity.R;
 import com.example.smartcity.bean.LoginBean;
 import com.example.smartcity.utils.GetRetrofit;
-import com.example.smartcity.utils.MretrofitInterface;
 import com.example.smartcity.utils.SPUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "LoginActivity";
@@ -80,7 +75,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = edt_psw.getText().toString().trim();
         if (TextUtils.isEmpty(userName)) {//常规EditText判空
             Toast.makeText(this, "请填写用户Id", Toast.LENGTH_SHORT).show();
-            return;
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "请填写密码", Toast.LENGTH_SHORT).show();
         } else {

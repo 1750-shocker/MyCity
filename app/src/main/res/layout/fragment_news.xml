@@ -16,11 +16,11 @@
         android:background="#1D8EE8"
         app:tabGravity="fill"
         app:tabIndicatorColor="#FAE104"
-        app:tabMode="fixed"
+        app:tabMode="scrollable"
         app:tabSelectedTextColor="#FAE002"
         app:tabTextAppearance="@style/tabLayoutTextSize"
         app:tabTextColor="#FFFFFF"
-        app:tabRippleColor="#000987ED"/>
+        app:tabRippleColor="@color/transparent" />
 
 
     <!--页面显示区-->

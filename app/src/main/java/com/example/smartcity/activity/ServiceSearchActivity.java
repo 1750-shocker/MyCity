@@ -46,7 +46,6 @@ public class ServiceSearchActivity extends AppCompatActivity {
         List<ServiceTable> rows = null;
         try {
             rows = MDBHelper.getInstance(this).getServDao().queryBuilder().where().like("servName", "%" + search + "%").query();
-            Log.i(TAG, "rows.size() = "+ rows.size()+rows.get(0).toString());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

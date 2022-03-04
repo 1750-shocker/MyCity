@@ -32,7 +32,6 @@ public class RecyclerLinearAdapter extends RecyclerView.Adapter {
     public RecyclerLinearAdapter(Context mContext, List<RowsDTO> mNewsBeanList) {
         this.mContext = mContext;
         this.mNewsBeanList = mNewsBeanList;
-        Log.i(TAG, "RecyclerLinearAdapter: 实例化成功");
     }
 
     @NonNull

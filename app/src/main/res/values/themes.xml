@@ -2,8 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.SmartCity" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#03A9F4</item>
+        <item name="colorPrimaryDark">#03A9F4</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="colorPrimaryVariant">#03A9F4</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -17,5 +19,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="FruitActivityTheme" parent="Theme.SmartCity" >
+        <item name="android:statusBarColor">#00FFFFFF</item>
     </style>
 </resources>

@@ -34,8 +34,8 @@ public class GuideActivity extends AppCompatActivity {
     private EditText etIp;
     private EditText etPort;
 
-
-    private int[] images = {R.mipmap.y1, R.mipmap.y2, R.mipmap.y3, R.mipmap.y4};//提前从服务器down的引导图
+    //提前从服务器down的引导图
+    private int[] images = {R.mipmap.y1, R.mipmap.y2, R.mipmap.y3, R.mipmap.y4};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

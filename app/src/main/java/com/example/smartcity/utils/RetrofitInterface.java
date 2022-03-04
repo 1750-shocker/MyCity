@@ -17,7 +17,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface MretrofitInterface {
+public interface RetrofitInterface {
     @POST("prod-api/api/login")
     Call<LoginBean> getLoginBean(@Body RequestBody body);
 

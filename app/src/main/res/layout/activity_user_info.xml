@@ -4,36 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="用户信息" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/user_info_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="用户信息"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
         android:background="@drawable/shape_login_form"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/change_avatar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -50,8 +40,7 @@
             <ImageView
                 android:id="@+id/ib_img"
                 android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/a" />
+                android:layout_height="60dp" />
         </LinearLayout>
 
         <View
@@ -225,6 +214,7 @@
         android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/shape_login_btn"
         android:text="修改"
@@ -235,6 +225,7 @@
         android:id="@+id/btn_clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape_register_btn"
         android:text="清空"

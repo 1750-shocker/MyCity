@@ -61,15 +61,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-
     }
 
     private void initView() {
         mainVp2 = (ViewPager2) findViewById(R.id.main_vp2);
+        mainTl = (TabLayout) findViewById(R.id.main_tl);
+
         mainVp2.setUserInputEnabled(false);//关键代码设置Viewpager2不可滑动
         MFragmentStateAdapter mFragmentStateAdapter = new MFragmentStateAdapter(this, this);
         mainVp2.setAdapter(mFragmentStateAdapter);
-        mainTl = (TabLayout) findViewById(R.id.main_tl);
+
 
         for (int i = 0; i < 5; i++) {//循环，将tab的文字和图片组合起来组合成list
             View view = View.inflate(MainActivity.this, R.layout.main_tab_item, null);

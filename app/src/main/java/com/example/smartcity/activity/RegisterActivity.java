@@ -1,7 +1,6 @@
 package com.example.smartcity.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,13 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartcity.R;
 import com.example.smartcity.bean.CommonBean;
 import com.example.smartcity.utils.GetRetrofit;
-import com.example.smartcity.utils.MretrofitInterface;
 import com.example.smartcity.utils.SPUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;

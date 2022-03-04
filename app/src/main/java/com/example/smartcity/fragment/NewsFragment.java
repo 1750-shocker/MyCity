@@ -59,17 +59,11 @@ public class NewsFragment extends Fragment {
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         return view;
     }
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void changeFragment(MessageEvent event) {
-//        if (event.getFragmentid() == 2) {
-//           tabLayout.setBackgroundColor(getResources().getColor(R.color.hui));
-//           tabLayout.setTabTextColors(getResources().getColor(R.color.blue),getResources().getColor(R.color.teal_700));
-//        }
-//    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String[] title = {"今日\n要闻", "专题\n聚焦", "政策\n解读", "经济\n发展", "文化\n旅游", "科技\n创新"};//tabItem数组
+        String[] title = {"今日要闻", "专题聚焦", "政策解读", "经济发展", "文化旅游", "科技创新"};//tabItem数组
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(JingriFragment.newInstance());
         fragmentList.add(ZhuantiFragment.newInstance());

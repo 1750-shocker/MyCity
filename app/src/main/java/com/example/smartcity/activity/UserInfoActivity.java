@@ -1,14 +1,23 @@
 package com.example.smartcity.activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -16,11 +25,15 @@ import android.widget.Toast;
 import com.example.smartcity.R;
 import com.example.smartcity.bean.CommonBean;
 import com.example.smartcity.bean.UserBean;
+import com.example.smartcity.utils.BitmapUtil;
+import com.example.smartcity.utils.FileUtil;
 import com.example.smartcity.utils.GetRetrofit;
 import com.example.smartcity.utils.SPUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -28,7 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
-    private Toolbar userInfoToolbar;
+    private Toolbar toolbar;
     private ImageView ibImg;
     private EditText etNicke;
     private EditText etPhone;
@@ -40,19 +53,27 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private Button btnUpdate;
     private Button btnClear;
     private String sex;
+    private int COMBINE_CODE = 4; // 既可拍照获得现场图片、也可在相册挑选已有图片的请求码
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
-        userInfoToolbar = (Toolbar) findViewById(R.id.user_info_toolbar);
-        userInfoToolbar.setNavigationIcon(R.drawable.top_bar_left_back1);
-        userInfoToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
+
+        LinearLayout changeAvatar = findViewById(R.id.change_avatar);
+        changeAvatar.setOnClickListener(this);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         ibImg = (ImageView) findViewById(R.id.ib_img);
+        ibImg.setImageBitmap(FileUtil.getAvatar(this));
+
         etNicke = (EditText) findViewById(R.id.et_nicke);
         etPhone = (EditText) findViewById(R.id.et_phone);
         etEmail = (EditText) findViewById(R.id.et_email);
@@ -84,11 +105,11 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     etPhone.setText(user.getPhonenumber().toString());
                     etEmail.setText(user.getEmail().toString());
                     String IDCard = user.getIdCard().toString();
-                    etIdetity.setText(IDCard.substring(0,2)+"******"+ IDCard.substring(IDCard.length()-4, IDCard.length()));
+                    etIdetity.setText(IDCard.substring(0, 2) + "*********" + IDCard.substring(IDCard.length() - 4, IDCard.length()));
                     sex = user.getSex();
                     rgSex.check(sex.equals("1") ? R.id.rb_woman : R.id.rb_man);
                 } else {
-                    Toast.makeText(UserInfoActivity.this,"请求失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInfoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -97,6 +118,15 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -110,7 +140,52 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             rgSex.clearCheck();
         } else if (view.getId() == R.id.btn_update) {
             updateInfo();
+        } else if (view.getId() == R.id.change_avatar) {
+            openSelectDialog();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK && requestCode == COMBINE_CODE) { // 从组合选择返回
+            if (intent.getData() != null) { // 从相册选择一张照片
+                Uri uri = intent.getData(); // 获得已选择照片的路径对象
+                // 根据指定图片的uri，获得自动缩小后的位图对象
+                Bitmap bitmap = BitmapUtil.getAutoZoomImage(this, uri);
+                ibImg.setImageBitmap(bitmap); // 设置图像视图的位图对象
+                final String s = FileUtil.bitmapToString(bitmap);
+                SPUtil.putString(this, "avatar", s);
+            } else if (intent.getExtras() != null) { // 拍照的缩略图
+                Object obj = intent.getExtras().get("data");
+                if (obj instanceof Bitmap) { // 属于位图类型
+                    Bitmap bitmap = (Bitmap) obj; // 强制转成位图对象
+                    ibImg.setImageBitmap(bitmap); // 设置图像视图的位图对象
+                    final String s = FileUtil.bitmapToString(bitmap);
+                    SPUtil.putString(this, "avatar", s);
+                }
+            }
+        }
+    }
+
+    // 打开选择对话框（要拍照还是去相册）
+    private void openSelectDialog() {
+        // 声明相机的拍照行为
+        Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent[] intentArray = new Intent[]{photoIntent};
+        // 声明相册的打开行为
+        Intent albumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        albumIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false); // 是否允许多选
+        albumIntent.setType("image/*"); // 类型为图像
+        // 容纳相机和相册在内的选择意图
+        Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
+        chooserIntent.putExtra(Intent.EXTRA_TITLE, "请拍照或选择图片");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
+        chooserIntent.putExtra(Intent.EXTRA_INTENT, albumIntent);
+        // 创建封装好标题的选择器意图
+        Intent chooser = Intent.createChooser(chooserIntent, "选择图片");
+        // 在页面底部弹出多种选择方式的列表对话框
+        startActivityForResult(chooser, COMBINE_CODE);
     }
 
     private void updateInfo() {
@@ -134,7 +209,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "4405281999121411040640", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(sex)){
+        if (TextUtils.isEmpty(sex)) {
             Toast.makeText(this, "请选择你的性别", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -145,6 +220,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             jsonObject.put("email", email);
             jsonObject.put("idCard", idetity);
             jsonObject.put("sex", sex);
+            jsonObject.put("avatar", SPUtil.getString(this, "avatar", "ddd"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -157,13 +233,15 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(UserInfoActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(UserInfoActivity.this, "修改失败 请检查网络", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInfoActivity.this, "返回值：" + code + ":"
+                            + SPUtil.getString(UserInfoActivity.this, "avatar", "kk")
+                            , Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<CommonBean> call, Throwable throwable) {
-                Toast.makeText(UserInfoActivity.this, "修改失败 请检查网络", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserInfoActivity.this, "修改失败 请检查网络Failure", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -1,21 +1,27 @@
 package com.example.smartcity.activity;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.smartcity.R;
 import com.example.smartcity.adapter.RecyclerLinearAdapter;
 import com.example.smartcity.bean.NewBean;
@@ -23,7 +29,9 @@ import com.example.smartcity.bean.RowsDTO;
 import com.example.smartcity.database.MDBHelper;
 import com.example.smartcity.fragment.CommentDialogFragment;
 import com.example.smartcity.utils.DialogFragmentDataCallBack;
+import com.example.smartcity.utils.FileUtil;
 import com.example.smartcity.utils.GetRetrofit;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,45 +53,58 @@ public class BannerWebView extends AppCompatActivity implements DialogFragmentDa
     private RecyclerView recommends;
     private int id;
     private TextView tvCommentFakeButton;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner_webview);
+
+        ImageView avatar = findViewById(R.id.user_avatar);
+        avatar.setImageBitmap(FileUtil.getAvatar(this));
+
+        Bundle extras = getIntent().getExtras();
+        id = (Integer) extras.get("id");
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         tvCommentFakeButton = (TextView) findViewById(R.id.tv_comment_fake_button);
         tvCommentFakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CommentDialogFragment dialogFragment = new CommentDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(),"Comment");
+                dialogFragment.show(getSupportFragmentManager(), "Comment");
             }
         });
-        Bundle extras = getIntent().getExtras();
-        id = (Integer) extras.get("id");
+
         comments = (RecyclerView) findViewById(R.id.comments);
         recommends = (RecyclerView) findViewById(R.id.recommends);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         comments.setLayoutManager(layoutManager);
+
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this);
         recommends.setLayoutManager(layoutManager1);
         List<RowsDTO> rows = getRandom();
         recommends.setAdapter(new RecyclerLinearAdapter(BannerWebView.this, rows));
-        //TODO:comments的数据请求&adapter&itemLayout没写
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("详情");
-        toolbar.setNavigationIcon(R.drawable.top_bar_left_back1);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
+        CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle("新闻详情");
+
         newsTitle = (TextView) findViewById(R.id.news_title);
-//        newsContent = (TextView) findViewById(R.id.news_content);
+        newsElse = (TextView) findViewById(R.id.news_else);
+        imageView = findViewById(R.id.fruit_image_view);
+
         mWebView = findViewById(R.id.details_content);
         mWebView.setWebViewClient(new WebViewClient());
-        newsElse = (TextView) findViewById(R.id.news_else);
+
+
         GetRetrofit.get().getNewBean(id).enqueue(new Callback<NewBean>() {
             @Override
             public void onResponse(Call<NewBean> call, Response<NewBean> response) {
@@ -92,6 +113,7 @@ public class BannerWebView extends AppCompatActivity implements DialogFragmentDa
                     NewBean.DataDTO data = newB.getData();
                     if (data != null) {
                         newsTitle.setText(data.getTitle());
+                        Glide.with(BannerWebView.this).load("http://124.93.196.45:10001" + data.getCover()).into(imageView);
 //                        newsContent.setText(Html.fromHtml(data.getContent()));
                         mWebView.loadDataWithBaseURL("http://124.93.196.45:10001",
                                 setWebVIewImage(data.getContent()), "text/html",
@@ -113,6 +135,15 @@ public class BannerWebView extends AppCompatActivity implements DialogFragmentDa
                 Toast.makeText(BannerWebView.this, "网络请求失败", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private List<RowsDTO> getRandom() {

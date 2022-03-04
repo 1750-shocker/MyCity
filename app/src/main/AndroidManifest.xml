@@ -3,6 +3,8 @@
     package="com.example.smartcity">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.MyApplication"
@@ -69,7 +71,8 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.GuideActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.BannerWebView" />
+        <activity android:name=".activity.BannerWebView"
+            android:theme="@style/FruitActivityTheme"/>
         <activity android:name=".activity.NewsSearchActivity" />
         <activity android:name=".activity.UpdatePswActivity" />
         <activity android:name=".activity.AdviseActivity" />

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,13 +21,14 @@ import com.example.smartcity.activity.LoginActivity;
 import com.example.smartcity.activity.OrderActivity;
 import com.example.smartcity.activity.UpdatePswActivity;
 import com.example.smartcity.activity.UserInfoActivity;
+import com.example.smartcity.utils.FileUtil;
 
 import java.util.Objects;
 
 
 public class UserFragment extends Fragment implements View.OnClickListener {
     private TextView tvUsercenter;
-    private ImageButton userImg;
+    private ImageView userImg;
     private TextView tvUsername;
     private LinearLayout llInfo;
     private ImageButton ibUserInfo;
@@ -50,7 +52,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         tvUsercenter = (TextView) view.findViewById(R.id.tv_usercenter);
-        userImg = (ImageButton) view.findViewById(R.id.user_img);
+
+        userImg =  view.findViewById(R.id.user_img);
+        userImg.setImageBitmap(FileUtil.getAvatar(mContext));
+
         tvUsername = (TextView) view.findViewById(R.id.tv_username);
         llInfo = (LinearLayout) view.findViewById(R.id.ll_info);
         llInfo.setOnClickListener(this);

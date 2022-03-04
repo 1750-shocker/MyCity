@@ -4,22 +4,17 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.smartcity.bean.LoginBean;
-import com.example.smartcity.bean.NewsBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -32,17 +27,17 @@ public class GetRetrofit {
 
     private static final String TAG = "GetRetrofit";
 
-    private static MretrofitInterface mretrofitInterface;
+    private static RetrofitInterface retrofitInterface;
 
-    public static MretrofitInterface get() {
-        if (mretrofitInterface == null) {
+    public static RetrofitInterface get() {
+        if (retrofitInterface == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            mretrofitInterface = retrofit.create(MretrofitInterface.class);
+            retrofitInterface = retrofit.create(RetrofitInterface.class);
         }
-        return mretrofitInterface;
+        return retrofitInterface;
     }
 
     public static RequestBody getRequestBody(JSONObject jsonObject) {
@@ -50,7 +45,7 @@ public class GetRetrofit {
     }
 
 
-    public MretrofitInterface getWithToken() {
+    public RetrofitInterface getWithToken() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new AddTokenInterceptor())
                 .addInterceptor(new TokenInterceptor())
@@ -61,7 +56,7 @@ public class GetRetrofit {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-        return retrofit.create(MretrofitInterface.class);
+        return retrofit.create(RetrofitInterface.class);
     }
 
 

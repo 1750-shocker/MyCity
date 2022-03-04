@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SmartCity"
 include ':app'
+include ':mycity2'
