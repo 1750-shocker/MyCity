@@ -20,14 +20,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetRetrofit {
+    private static final String TAG = "GetRetrofitkkk";
     private static final String baseUrl = "http://124.93.196.45:10001/";
     private Context mContext;
 
     public GetRetrofit(Context mContext) {
         this.mContext = mContext;
     }
-
-    private static final String TAG = "GetRetrofit";
 
     private static RetrofitInterface mretrofitInterface;
 
@@ -59,25 +58,6 @@ public class GetRetrofit {
                 .client(client)
                 .build();
         return retrofit.create(RetrofitInterface.class);
-    }
-
-
-    private String getToken() throws IOException, JSONException {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://124.93.196.45:10001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        String userName = SPUtil.getString(mContext, "userName", "123");
-        String password = SPUtil.getString(mContext, "password", "456");
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("username", userName);
-        jsonObject.put("password", password);
-
-        RequestBody body = getRequestBody(jsonObject);
-        retrofit2.Response<LoginBean> response = get().getLoginBean(body).execute();
-        Log.i(TAG, "getToken: " + response.body().getCode());
-        return response.body().getToken();
-
     }
 
     /**
@@ -134,6 +114,23 @@ public class GetRetrofit {
                 }
             }
             return chain.proceed(oRequest);//token有效，则发送原来的请求。
+        }
+        private String getToken() throws IOException, JSONException {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://124.93.196.45:10001/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            String username = SPUtil.getString(mContext, "username", "123");
+            String password = SPUtil.getString(mContext, "password", "456");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("username", username);
+            jsonObject.put("password", password);
+
+            RequestBody body = getRequestBody(jsonObject);
+            retrofit2.Response<LoginBean> response = get().getLoginBean(body).execute();
+            Log.i(TAG, "getToken: " + response.body().getCode());
+            return response.body().getToken();
+
         }
     }
 }
