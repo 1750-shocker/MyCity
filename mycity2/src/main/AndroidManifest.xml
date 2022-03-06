@@ -13,6 +13,18 @@
         android:theme="@style/Theme.SmartCity"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".activity.ServiceSearchActivity"
             android:exported="false" />
         <activity
@@ -66,18 +78,6 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activity.SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity.GuideActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity

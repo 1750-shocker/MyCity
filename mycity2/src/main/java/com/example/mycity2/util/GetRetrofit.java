@@ -49,9 +49,8 @@ public class GetRetrofit {
     public RetrofitInterface getWithToken() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new AddTokenInterceptor())
-                .addInterceptor(new TokenInterceptor())
                 .build();
-
+        Log.i(TAG, "getWithToken: 加了拦截器");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -65,72 +64,36 @@ public class GetRetrofit {
      */
     class AddTokenInterceptor implements Interceptor {
 
+        private Request newRequest;
+
         @Override
         public Response intercept(Chain chain) throws IOException {
-            String token = SPUtil.getString(mContext, "token", "abcd");
-            Request request = chain.request()
-                    .newBuilder()
-                    .addHeader("Authorization", token)
-                    .build();
-            return chain.proceed(request);
+            try {
+                String ntoken = getToken(); // 获得新token
+                SPUtil.putString(mContext, "token", ntoken); // 保存
+                // 构建新请求
+                newRequest = chain.request().newBuilder()
+                        .header("Authorization", ntoken)
+                        .build();
+                return chain.proceed(newRequest);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return chain.proceed(newRequest);
         }
     }
 
-    /**
-     * Token拦截器，验证当前的token是否有效，如果无效则发起请求获得新的token，
-     * 然后将新的token更新请求，并重新发送到服务器。同时将新的token保存。
-     */
-    class TokenInterceptor implements Interceptor {
+    private String getToken() throws IOException, JSONException {
+        String username = SPUtil.getString(mContext, "username", "123");
+        String password = SPUtil.getString(mContext, "password", "456");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", username);
+        jsonObject.put("password", password);
+        RequestBody body = getRequestBody(jsonObject);
+        retrofit2.Response<LoginBean> response = get().getLoginBean(body).execute();
+        Log.i(TAG, "getToken: " + response.body().getCode());
+        return response.body().getToken();
 
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            // 获得请求
-            Request oRequest = chain.request();
-            // 发送请求
-            Response response = chain.proceed(oRequest);
-            // 判断token有效性
-            if (response.body().string().contains("401")) {
-                try {
-                    String token = getToken(); // 获得新token
-                    if (token != null) {
-                        SPUtil.putString(mContext, "token", token); // 保存
-                        // 构建新请求
-                        Request newRequest = chain.request().newBuilder()
-                                .header("Authorization", token)
-                                .build();
-                        // 再次发送请求
-                        return chain.proceed(newRequest);
-                    } else {
-                        // 构建新请求
-                        Request newRequest = chain.request().newBuilder()
-                                .header("Authorization", "null")
-                                .build();
-                        // 再次发送请求
-                        return chain.proceed(newRequest);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            return chain.proceed(oRequest);//token有效，则发送原来的请求。
-        }
-        private String getToken() throws IOException, JSONException {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://124.93.196.45:10001/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            String username = SPUtil.getString(mContext, "username", "123");
-            String password = SPUtil.getString(mContext, "password", "456");
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("username", username);
-            jsonObject.put("password", password);
-
-            RequestBody body = getRequestBody(jsonObject);
-            retrofit2.Response<LoginBean> response = get().getLoginBean(body).execute();
-            Log.i(TAG, "getToken: " + response.body().getCode());
-            return response.body().getToken();
-
-        }
     }
 }

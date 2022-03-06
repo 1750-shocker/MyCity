@@ -148,8 +148,12 @@ public class UserInfoActivity extends AppCompatActivity {
                 if (body.getCode() == 200) {
                     final UserBean userBean = body.getUser();
                     etEmail.setText(userBean.getEmail());
-                    final String idCard = userBean.getIdCard();
-                    etIdcard.setText(idCard.substring(0, 2) + "*********" + idCard.substring(idCard.length() - 4, idCard.length()));
+                    String idCard = userBean.getIdCard();
+                    if (!TextUtils.isEmpty(idCard)) {
+                        etIdcard.setText(idCard.substring(0, 2) + "*********" + idCard.substring(idCard.length() - 4, idCard.length()));
+                    } else {
+                        etIdcard.setText("");
+                    }
                     etNickname.setText(userBean.getNickName());
                     etPhonenumber.setText(userBean.getPhonenumber());
                     sex = userBean.getSex();
