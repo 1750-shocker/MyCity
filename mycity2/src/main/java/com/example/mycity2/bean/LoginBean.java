@@ -5,7 +5,7 @@ public class LoginBean {
     /**
      * msg : 操作成功
      * code : 200
-     * token : eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijg4MjhlNWZkLWUwNWUtNDc0NS05ZWNmLTJlMjBmZmIyNzdkZCJ9.VRmHXnsUY0bE_X9TR4SNpxInKnoldondAuETwCLbaVe9iRXnbYm1ZfFg1CUkrby8cWK9yxl-WvfAZSaka6sKrA
+     * token : xxx
      */
 
     private String msg;

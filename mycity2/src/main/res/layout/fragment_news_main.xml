@@ -13,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:elevation="4dp"
         app:tabGravity="center"
         app:tabIndicatorColor="@color/bgGrey"
         app:tabMode="scrollable"
         app:tabRippleColor="@color/transParent"
         app:tabSelectedTextColor="@color/bgGrey"
-        app:tabTextColor="#FFFFFF"
-        android:elevation="4dp"/>
+        app:tabTextColor="#FFFFFF" />
 
 
     <!--页面显示区-->

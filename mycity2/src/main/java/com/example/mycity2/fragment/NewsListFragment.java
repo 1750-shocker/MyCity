@@ -92,7 +92,6 @@ public class NewsListFragment extends Fragment {
         bannerData.add(rows.get(rows.size() - 1));
         bannerData.add(rows.get(rows.size() - 2));
         bannerData.add(rows.get(rows.size() - 3));
-        String[] titles = {rows.get(rows.size() - 1).getTitle(), rows.get(rows.size() - 2).getTitle(), rows.get(rows.size() - 3).getTitle()};
         final BannerImageAdapter<RowsBean> bannerImageAdapter = new BannerImageAdapter<RowsBean>(bannerData) {
             @Override
             public void onBindView(BannerImageHolder bannerImageHolder, RowsBean rowsBean, int i, int i1) {

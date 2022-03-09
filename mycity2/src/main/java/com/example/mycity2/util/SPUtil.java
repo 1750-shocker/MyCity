@@ -14,20 +14,18 @@ public class SPUtil {
         editor.apply();
     }
 
+    public static String getString(Context context, String key, String defValue) {
+        SharedPreferences sp =
+                context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return sp.getString(key, defValue);
+    }
+
     public static void putBoolean(Context context, String key, boolean value) {
         SharedPreferences sp =
                 context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean(key,value);
         editor.apply();
-    }
-
-
-
-    public static String getString(Context context, String key, String defValue) {
-        SharedPreferences sp =
-                context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        return sp.getString(key, defValue);
     }
 
     public static boolean getBoolean(Context context, String key, boolean defValue) {

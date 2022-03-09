@@ -100,6 +100,7 @@ public class HomePageFragment extends Fragment {
             }
         });
     }
+
     public void initBanner() {
         final BannerImageAdapter<RotationBean.RowsBean> ada = new BannerImageAdapter<RotationBean.RowsBean>(rotations) {
 

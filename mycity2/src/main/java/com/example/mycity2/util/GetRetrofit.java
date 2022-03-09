@@ -30,6 +30,10 @@ public class GetRetrofit {
 
     private static RetrofitInterface mretrofitInterface;
 
+    public static RequestBody getRequestBody(JSONObject jsonObject) {
+        return RequestBody.create(MediaType.parse("application/json;charset=utf-8"), String.valueOf(jsonObject));
+    }
+
     public static RetrofitInterface get() {
         if (mretrofitInterface == null) {
             Retrofit retrofit = new Retrofit.Builder()
@@ -40,11 +44,6 @@ public class GetRetrofit {
         }
         return mretrofitInterface;
     }
-
-    public static RequestBody getRequestBody(JSONObject jsonObject) {
-        return RequestBody.create(MediaType.parse("application/json;charset=utf-8"), String.valueOf(jsonObject));
-    }
-
 
     public RetrofitInterface getWithToken() {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -62,34 +61,33 @@ public class GetRetrofit {
     /**
      * 为请求增加header
      */
-    class AddTokenInterceptor implements Interceptor {
+    private class AddTokenInterceptor implements Interceptor {
 
         private Request newRequest;
 
         @Override
         public Response intercept(Chain chain) throws IOException {
-            try {
                 String ntoken = getToken(); // 获得新token
                 SPUtil.putString(mContext, "token", ntoken); // 保存
                 // 构建新请求
                 newRequest = chain.request().newBuilder()
                         .header("Authorization", ntoken)
                         .build();
-                return chain.proceed(newRequest);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
             return chain.proceed(newRequest);
         }
     }
 
-    private String getToken() throws IOException, JSONException {
+    private String getToken() throws IOException{
         String username = SPUtil.getString(mContext, "username", "123");
         String password = SPUtil.getString(mContext, "password", "456");
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("username", username);
-        jsonObject.put("password", password);
+        try {
+            jsonObject.put("username", username);
+            jsonObject.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         RequestBody body = getRequestBody(jsonObject);
         retrofit2.Response<LoginBean> response = get().getLoginBean(body).execute();
         Log.i(TAG, "getToken: " + response.body().getCode());

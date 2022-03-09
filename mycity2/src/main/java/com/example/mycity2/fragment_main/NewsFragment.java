@@ -34,7 +34,6 @@ public class NewsFragment extends Fragment {
         news = (LinearLayout) view.findViewById(R.id.news);
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
-
         return view;
 
     }

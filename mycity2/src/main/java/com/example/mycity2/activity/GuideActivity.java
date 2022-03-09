@@ -31,11 +31,15 @@ public class GuideActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
-        initView();
+        vpGuide = findViewById(R.id.vp_guide);
         setView();
         initDataBase();
     }
-
+    private void setView() {
+        final GuideAdapter adapter = new GuideAdapter(this, guideImages);
+        vpGuide.setAdapter(adapter);
+        vpGuide.setCurrentItem(0);
+    }
     private void initDataBase() {
         GetRetrofit.get().getNewsListBean().enqueue(new Callback<NewsListBean>() {
             @Override
@@ -77,14 +81,7 @@ public class GuideActivity extends AppCompatActivity {
         }
     }
 
-    private void initView() {
-        vpGuide = (ViewPager) findViewById(R.id.vp_guide);
-    }
-    private void setView() {
-        final GuideAdapter adapter = new GuideAdapter(this, guideImages);
-        vpGuide.setAdapter(adapter);
-        vpGuide.setCurrentItem(0);
-    }
+
 
 
 }

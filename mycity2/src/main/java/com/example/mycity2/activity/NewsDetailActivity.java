@@ -76,30 +76,31 @@ public class NewsDetailActivity extends AppCompatActivity implements DialogFragm
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        rvRecommend.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvRecommend.setAdapter(new NewsListAdapter(this, getRandomRows()));
-        newsTitle.setText(rowsBean.getTitle());
+
+        collapsingToolbar.setTitle("新闻详情");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Glide.with(this).load("http://124.93.196.45:10001" + rowsBean.getCover()).into(ivCover);
+
+        newsTitle.setText(rowsBean.getTitle());
         webViewContent.loadDataWithBaseURL("http://124.93.196.45:10001",
                 setWebVIewImage(rowsBean.getContent()), "text/html",
                 "utf-8", null);
         newsDate.setText(rowsBean.getPublishDate());
+
+        rvRecommend.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvRecommend.setAdapter(new NewsListAdapter(this, getRandomRows()));
+
         userAvatar.setImageResource(R.drawable.y1);
 
-        setSupportActionBar(toolbar);
-        final ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
         tvCommentFakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new CommentDialogFragment().show(getSupportFragmentManager(), "Comment");
             }
         });
-        rvComment.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        collapsingToolbar.setTitle("新闻详情");
-
+//        rvComment.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -109,6 +110,8 @@ public class NewsDetailActivity extends AppCompatActivity implements DialogFragm
         }
         return super.onOptionsItemSelected(item);
     }
+
+
     // 适配image和table标签
     public static String setWebVIewImage(String star) {
         String head = "<head>"

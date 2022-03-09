@@ -70,5 +70,4 @@ public class MDBHelper extends OrmLiteSqliteOpenHelper {
         }
         return servDao;
     }
-
 }
